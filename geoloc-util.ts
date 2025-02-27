@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { getGeolocations } from "./src/utilities/getGeolocations";
+import { getGeolocations } from "./src/utilities/getLocationDetails";
 
 const program = new Command();
 

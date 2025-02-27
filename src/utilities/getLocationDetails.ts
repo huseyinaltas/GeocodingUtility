@@ -1,26 +1,9 @@
 import axios, { AxiosResponse } from "axios";
 import dotenv from "dotenv";
+import { Weather, Geolocation } from "./typesForGeo";
 dotenv.config();
 
-// Define the Geolocation type
-interface Geolocation {
-  place: string;
-  latitude: number;
-  longitude: number;
-  country: string;
-  weather: Weather;
-}
-interface Weather {
-  place: string;
-  temperature: number;
-  feelsLike: number;
-  humidity: number;
-  windSpeed: number;
-  weatherCondition: string;
-  country: string;
-}
-
-export async function getGeolocation(
+export async function getLocation(
   query: string
 ): Promise<Geolocation | null | string> {
   try {
@@ -52,7 +35,6 @@ export async function getGeolocation(
     const response: AxiosResponse = await axios.get(process.env.BASE_URL!, {
       params,
     });
-    // console.log(response);
 
     if (response.status === 200) {
       const data = response.data;
@@ -88,6 +70,7 @@ export async function getGeolocation(
     }
   } catch (error: any) {
     // If API has error return API error
+    console.log("error", error);
     if (error.response && error.response.data)
       return `API Error: ${
         error.response.data.cod + ": " + error.response.data.message
@@ -114,9 +97,19 @@ export async function getGeolocations(
     for (const location of locations) {
       try {
         console.log(`Fetching geolocation for: ${location}`);
-        const geolocation: Geolocation | any = (await getGeolocation(
+        const geolocation: Geolocation | any = (await getLocation(
           location
         )) as Geolocation;
+
+        // Throw Error when API_KEY is missing
+        if (
+          geolocation &&
+          typeof geolocation === "string" &&
+          geolocation.includes("401: Invalid API key")
+        ) {
+          responses = [geolocation];
+          throw Error(geolocation);
+        }
         console.log(`Place: ${geolocation.place}, ${geolocation.country}`);
         console.log(
           `Latitude: ${geolocation.latitude}, Longitude: ${geolocation.longitude}`

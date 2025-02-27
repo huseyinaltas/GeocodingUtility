@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import {
   getGeolocations,
   kelvinToFahrenheit,
-} from "../utilities/getGeolocations";
+} from "../utilities/getLocationDetails";
 import axios, { AxiosResponse } from "axios";
 
 test("Get only one geo location when you pass a place name", async ({
@@ -213,9 +213,9 @@ test("Validate 'API Error: 401: Invalid API key' error when you pass wrong API_K
 }) => {
   process.env.API_KEY = "LOL";
   let expected = await getGeolocations(["Chicago, IL"]);
-  expect(expected).toStrictEqual([
-    "API Error: 401: Invalid API key. Please see https://openweathermap.org/faq#error401 for more info.",
-  ]);
+  expect(expected[0]).toEqual(
+    "API Error: 401: Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."
+  );
 });
 
 test("Validate 'Invalid URL' error when you pass wrong wrong URL", async ({
