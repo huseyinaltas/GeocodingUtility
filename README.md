@@ -26,8 +26,12 @@ npm run geoloc-util --  "Madison, WI" "10001" "Chicago, IL"
 ## Running the Tests
 
 You can run the utility Integration Test with below command:
+```bash
 npm test
+```
 
 You will get HTML report and open with
+```bash
 npx playwright show-report
+```
 
