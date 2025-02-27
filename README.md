@@ -13,6 +13,7 @@ This utility fetches geolocation data (latitude, longitude, place name, and weat
 ## Install dependencies
 
 - npm install
+- npx playwright install
 
 ## Running the Utility
 
