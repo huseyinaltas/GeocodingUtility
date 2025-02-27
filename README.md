@@ -21,7 +21,7 @@ You can run the utility via the command line like this:
 ```bash
 npm run geoloc-util "Chicago, IL"
 npm run geoloc-util --  "Madison, WI" "10001" "Chicago, IL"
-
+```
 
 ## Running the Tests
 
@@ -31,4 +31,3 @@ npm test
 You will get HTML report and open with
 npx playwright show-report
 
-```
