@@ -1,0 +1,25 @@
+{
+  "name": "geocodingutility",
+  "version": "1.0.0",
+  "description": "It is an assignment for a SDET position in FETCH.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "geoloc-util": "npx ts-node geoloc-util.ts"
+  },
+  "author": "Huseyin Altas",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.50.1",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.13.5",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3",
+    "axios": "^1.8.1",
+    "commander": "^13.1.0",
+    "dotenv": "^16.4.7"
+  },
+  "dependencies": {}
+}
